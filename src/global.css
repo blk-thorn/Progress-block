@@ -22,6 +22,14 @@
   list-style: none;
 }
 
+input,
+select,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -130,6 +138,11 @@ body {
   position: relative;
   display: flex;
   align-items: center;
+  column-gap: 10px;
+}
+
+.input__container {
+  margin-left: 24px;
 }
 
 .progress-block__switch input {
@@ -173,7 +186,6 @@ input:checked + .slider:before {
   font-size: 18px;
   font-weight: bolder;
   color: var(--color-text);
-  margin-left: 10px;
 }
 
 .tooltip {
@@ -211,10 +223,6 @@ input:checked + .slider:before {
   .progress-block__control {
     margin-top: 5rem;
     row-gap: 1rem;
-  }
-
-  .progress-block__control {
-    width: 131px;
   }
 
   .tooltip {
