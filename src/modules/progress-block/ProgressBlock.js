@@ -85,6 +85,13 @@ export class ProgressBlock {
         inputText.classList.add("toggle-text");
         inputText.textContent = "Value";
 
+        const tooltip = document.createElement("div");
+        tooltip.classList.add("tooltip");
+        tooltip.id = "tooltip";
+        tooltip.textContent = "Можно ввести только числа от 0 до 100";
+        tooltip.style.display = "none";
+
+        inputContainer.appendChild(tooltip);
         inputContainer.appendChild(input);
         inputContainer.appendChild(inputText);
 
