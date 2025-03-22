@@ -235,10 +235,11 @@ input:checked + .slider:before {
 @media screen and (orientation: landscape) {
   .progress-block__content {
     padding: 0 0 0 2px;
+    column-gap: 6rem;
   }
   .progress-block__svg {
     top: 50%;
-    left: 22%;
+    left: 20%;
     transform: translate(-50%, -50%);
   }
 
