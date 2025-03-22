@@ -106,7 +106,7 @@ body {
 }
 
 .progress-block__input {
-  width: 55px;
+  width: 56px;
   height: 33px;
   padding: 4px 5px;
   font-size: 16px;
@@ -154,7 +154,7 @@ body {
 .slider {
   position: relative;
   cursor: pointer;
-  width: 55px;
+  width: 56px;
   height: 33px;
   background-color: var(--color-toggle-background);
   transition: 0.4s;
@@ -164,9 +164,9 @@ body {
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
+  height: 24px;
+  width: 24px;
+  left: 3px;
   bottom: 4px;
   background-color: var(--color-toggle-handle);
   transition: 0.4s;
