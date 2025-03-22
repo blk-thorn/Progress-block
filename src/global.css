@@ -22,6 +22,14 @@
   list-style: none;
 }
 
+input,
+select,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -125,10 +133,16 @@ body {
   row-gap: 1rem;
 }
 
-.progress-block__switch {
+.progress-block__switch,
+.input__container {
   position: relative;
   display: flex;
   align-items: center;
+  column-gap: 10px;
+}
+
+.input__container {
+  margin-left: 10px;
 }
 
 .progress-block__switch input {
@@ -168,10 +182,11 @@ input:checked + .slider:before {
 }
 
 .toggle-text {
+  width: 66px;
   font-size: 18px;
   font-weight: bolder;
   color: var(--color-text);
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 
 .tooltip {
@@ -211,9 +226,9 @@ input:checked + .slider:before {
     row-gap: 1rem;
   }
 
-  .progress-block__control {
+  /* .progress-block__control {
     width: 131px;
-  }
+  } */
 
   .tooltip {
     bottom: 33%;
