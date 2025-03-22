@@ -52,12 +52,13 @@ export class ProgressBar {
             this.handleInputChange();
         });
 
-        this.input.addEventListener("blur", () => this.hideTooltip());
+        // this.input.addEventListener("blur", () => this.hideTooltip());
 
         this.input.addEventListener("keydown", (event) => {
-            const invalidChars = ["e", "E", "+", "-", "."];
-
-            if (invalidChars.includes(event.key)) {
+            const allowedKeys = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"];
+            const isDigit = /^\d$/.test(event.key);
+        
+            if (!isDigit && !allowedKeys.includes(event.key)) {
                 event.preventDefault();
             }
         });
