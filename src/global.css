@@ -226,8 +226,7 @@ input:checked + .slider:before {
   }
 
   .tooltip {
-    bottom: 33%;
-    left: 10%;
+    bottom: 75%;
     margin-bottom: 10px;
   }
 }
@@ -245,7 +244,6 @@ input:checked + .slider:before {
 
   .tooltip {
     bottom: 86%;
-    left: 65%;
     margin-bottom: 8px;
   }
 }
