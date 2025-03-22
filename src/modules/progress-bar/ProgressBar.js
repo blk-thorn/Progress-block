@@ -27,7 +27,7 @@ export class ProgressBar {
         }, 300);
 
         this.input.addEventListener("input", () => {
-            const inputValue = this.input.value;
+            const inputValue = this.input.value.replace(/[^\d]/g, "");
 
             if (inputValue.startsWith("0") && inputValue.length > 1) {
                 this.input.value = "0";
