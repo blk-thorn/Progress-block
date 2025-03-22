@@ -14,6 +14,7 @@ export class ProgressBar {
         this.svgBlock = document.getElementById("svg-block");
         this.svgOuter = document.getElementById("svg-outer");
         this.svgInner = document.getElementById("svg-inner");
+        this.tooltip = document.getElementById("tooltip");
 
         this.circleRadius = this.circle.r.baseVal.value;
         this.circumference = 2 * Math.PI * this.circleRadius;
@@ -26,15 +27,44 @@ export class ProgressBar {
         }, 300);
 
         this.input.addEventListener("input", () => {
-            const newValue = parseInt(this.input.value, 10);
-            if (newValue >= 0 && newValue <= 100) {
-                this.setProgress(newValue);
+            const inputValue = this.input.value;
+
+            if (inputValue.startsWith("0") && inputValue.length > 1) {
+                this.input.value = "0";
+                this.input.value = inputValue.slice(0, 1);
+                this.handleInputChange();
+                this.showTooltip("Значение не может начинаться с нуля, кроме 0.");
+                return;
+            }
+
+            if (parseInt(inputValue, 10) > 100) {
+                this.input.value = inputValue.slice(0, -1);
+                this.showTooltip();
+                return;
+            }
+
+            if (inputValue.length > 3) {
+                this.input.value = inputValue.slice(0, 3);
+                this.showTooltip();
+                return;
+            }
+
+            this.handleInputChange();
+        });
+
+        this.input.addEventListener("blur", () => this.hideTooltip());
+
+        this.input.addEventListener("keydown", (event) => {
+            const invalidChars = ["e", "E", "+", "-", "."];
+
+            if (invalidChars.includes(event.key)) {
+                event.preventDefault();
             }
         });
 
         this.animateCheckbox.addEventListener("change", () => {
             if (this.animateCheckbox.checked) {
-                this.startAnimation();
+                this.handleInputChange();
             } else {
                 this.stopAnimation();
             }
@@ -47,6 +77,24 @@ export class ProgressBar {
                 this.showElements();
             }
         });
+    }
+
+    handleInputChange() {
+        const inputValue = this.input.value;
+        const newValue = parseInt(inputValue, 10);
+
+        if (newValue >= 0 && newValue <= 100) {
+            this.setProgress(newValue);
+            this.hideTooltip();
+
+            if (this.animateCheckbox.checked) {
+                this.startAnimation();
+            }
+        } else {
+            this.showTooltip();
+
+            this.stopAnimation();
+        }
     }
 
     setProgress(percent) {
@@ -107,5 +155,15 @@ export class ProgressBar {
         this.svgBlock.style.opacity = "1";
         this.svgOuter.style.opacity = "1";
         this.svgInner.style.opacity = "1";
+    }
+
+    showTooltip(message = "Можно ввести только числа от 0 до 100.") {
+        this.tooltip.textContent = message;
+        this.tooltip.style.display = "block";
+        this.tooltip.style.position = "absolute";
+    }
+
+    hideTooltip() {
+        this.tooltip.style.display = "none";
     }
 }
